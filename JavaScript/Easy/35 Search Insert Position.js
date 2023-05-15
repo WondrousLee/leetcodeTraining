@@ -1,35 +1,22 @@
-let nums = [1,3,5,6];
-let target = 10;
+let nums = [1, 3, 5, 6];
+let target = 2;
 
 
-let firstAttemptFound;
-let secondAttemptFound;
 for (let i = 0; i <= nums.length; i++) {
-    if (nums[i] == target){
-        console.log(i);
+    if (nums[i] == target) {
+        return(i);
         break;
     }
-    else {
-        found = false;
+    if (target < nums[i]) {
+        let previousindex = i - 1
+        nums.splice(i, previousindex, target);
+        return(i)
+        break;
+    }
+    else if (i == nums.length - 1) {
+        nums.push(target)
+        return(nums.length - 1)
+        break;
     }
 }
-
-if (found == false){
-    for (let j = 0; j <= nums.length; j++) {
-        if (target < nums[j]){
-            let previousindex = j - 1
-            nums.splice(j, previousindex , target);
-            console.log(j)
-            secondAttemptFound = true;
-            break;
-        }
-        else {
-            secondAttemptFound = false;
-        }
-    }
-    if (secondAttemptFound == false){
-    nums.push(target)
-    console.log(nums.length-1)
-    }
-}
-//one of the worst implementation by LeetCode so i'll need to rework it asap ;P
+//it's better... it's getting there... Beats 37%
