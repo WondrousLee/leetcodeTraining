@@ -1,39 +1,49 @@
-let nums = [3,2,1];
-let maxNumber = 0;
+let nums = [1,-2147483648,-2147483648,2]; //[5,2,4,1,3,6,0] creates infinite loop?
+///////
 
-function removeItemAll(arr, value) {
+
+let maxNums = []
+
+for (let i = 0; i < nums.length; i++) {
+    let min = Math.max(...nums)
+    maxNums.push(min);
+    var j = 0;
+    while (j < nums.length) {
+        if (nums[j] === min) {
+            nums.splice(j, 1);
+        } else {
+            ++j;
+        }
+    }
+    if (nums.length == 1){
+        maxNums.push(nums[0]);
+    }
+}
+
+while (maxNums.length > 3) {
+    min = Math.min(...maxNums)
     var i = 0;
-    while (i < arr.length) {
-        if (arr[i] === value) {
-            arr.splice(i, 1);
+    while (i < maxNums.length) {
+        if (maxNums[i] === min) {
+            maxNums.splice(i, 1);
         } else {
             ++i;
         }
     }
 }
 
-while (nums.length > 3) {
-        min = Math.min(...nums)
-        removeItemAll(nums, min);
+let returnNeeded
+if (maxNums.length >= 3){
+    returnNeeded = maxNums[2];
+}
+else {
+    returnNeeded = Math.max(...maxNums)
 }
 
-for (let i = 0; i < nums.length; i++){
-    if (nums[i] == nums[i+1]){
-          nums.splice(i, 1);
-          i--;
-    }
-}
 
-for (let i = 0; i < nums.length; i++) {
-    if (nums[i] > nums[maxNumber]) {
-        maxNumber = i;
-    }
-}
+////////
+console.log(returnNeeded);
+console.log(maxNums)
 
-let result = maxNumber+1;
-
-console.log(result);
-console.log(nums);
-
-// to be honest, i don't have mental capacity to finish it today.
-// WIP
+//The issue is resolved but i cannot submit it, i need to rewrite all Math.max and Math.min for custom functions
+//... to support floats... YES FLOATS because leetcode didn't give information that FLOATS ARE REQUIRED!
