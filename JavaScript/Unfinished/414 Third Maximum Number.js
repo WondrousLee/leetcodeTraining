@@ -1,4 +1,7 @@
-let nums = [1,-2147483648,-2147483648,2]; //[5,2,4,1,3,6,0] creates infinite loop?
+let nums = [1,-2147483648,-2147483648,2]; 
+//No float support in this code, need to throw out all...
+//... math.max and math.min functions and change it to...
+//... custom functions with for loops 'n stuff.
 ///////
 
 
@@ -44,6 +47,3 @@ else {
 ////////
 console.log(returnNeeded);
 console.log(maxNums)
-
-//The issue is resolved but i cannot submit it, i need to rewrite all Math.max and Math.min for custom functions
-//... to support floats... YES FLOATS because leetcode didn't give information that FLOATS ARE REQUIRED!
